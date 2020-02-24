@@ -1,5 +1,6 @@
 package com.test.log.filter.util;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,15 @@ public class CommunicationClient {
 	public String getRemoteData(String remoteUrl)
 	{
 		LOGGER.info("Requesting data from the URL "+remoteUrl);
-		ResponseEntity<String> response = restClient.getForEntity(remoteUrl, String.class);
+		ResponseEntity<String> response = null;
+		try {
+			response = restClient.getForEntity(remoteUrl, String.class);
+		}
+		catch(Exception ex)
+		{
+			throw new InternalServerException("Please check your internet connection");
+		}
+		
 		if(response.getStatusCodeValue() == 200)
 		{
 			return response.getBody();
