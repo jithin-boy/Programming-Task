@@ -1,51 +1,6 @@
 # Log Filter
 
-URL : http://localhost:8080/api/logFilter
-
-Method : POST,GET
-
-Description : 
-
-POST -> Takes the Payload as the input for filtering.
-GET -> Reads the input json and the log file from the specified GIT Url and performs the action 
-
-Payload Explanation : 
-
-logFile -> The Git File location
-data -> Filters
-
-Sample Payload for POST :
-
-{"logFile": "https://raw.githubusercontent.com/dhruvbehl/jsonTest/master/login.log",
-"data": [{
-			"ipAddress": "10.1.2.40",
-			"debugFlag": ["FAIL", "PASS", "LOGIN"]
-		},
-		{
-			"ipAddress": "10.1.20.10",
-			"debugFlag": ["FAIL", "PASS", "LOGIN"]
-		},
-		{
-			"ipAddress": "10.4.3.102",
-			"debugFlag": ["PASS"]
-		},
-		{
-			"ipAddress": "10.5.3.140",
-			"debugFlag": ["FAIL", "PASS", "LOGIN"]
-		},
-		{
-			"ipAddress": "10.1.2.45",
-			"debugFlag": ["FAIL", "PASS", "LOGIN"]
-		}
-	]
-}
-    
-Sample Response:
-
-{
-    "status": "Success",
-    "message": "Added logs to the folder"
-}
+Swagger URL : https://app.swaggerhub.com/apis/jithin-boy/LogFilter/1.0.0
 
 
 
