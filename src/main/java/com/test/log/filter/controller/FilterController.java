@@ -19,12 +19,16 @@ import com.test.log.filter.model.ResponseObject;
 import com.test.log.filter.model.constants.ErrorMessages;
 import com.test.log.filter.service.FilterService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author Jithin
  *
  */
 @RestController
 @RequestMapping("/api")
+@Api(description = "To perform all filter operations.")
 public class FilterController {
 
 	private final static Logger LOGGER = Logger.getLogger("FilterController");
@@ -33,6 +37,7 @@ public class FilterController {
 	private FilterService filterService;
 
 	@PostMapping("/logFilter")
+	@ApiOperation(value = "Create Log files based on the given input json and given log file location.", response = ResponseObject.class)
 	public ResponseEntity<ResponseObject> createLogFiles(@Valid @RequestBody Filter filter) {
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -46,6 +51,7 @@ public class FilterController {
 	}
 
 	@PostMapping("/gitLogFilter")
+	@ApiOperation(value = "Create Log files based on the input json and log file present in the GIT location.", response = ResponseObject.class)
 	public ResponseEntity<ResponseObject> generateLogsFromGitInput() {
 		LOGGER.info("Received GET Request form user for fetching data from GIT");
 		return filterService.generateLogsFromGitInput();

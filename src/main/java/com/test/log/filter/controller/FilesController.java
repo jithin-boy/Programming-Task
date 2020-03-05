@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.test.log.filter.model.ResponseObject;
 import com.test.log.filter.service.FilesService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+
 @RestController
 @RequestMapping("/api/files")
+@Api(description = "To perform all file related operations.")
 public class FilesController {
 	
 	private final static Logger LOGGER = Logger.getLogger("FilesController");
@@ -32,6 +37,7 @@ public class FilesController {
 	 *
 	 * @return the all  files names present in the logs folder.
 	 */
+	@ApiOperation(value = "List all log files in the system", response = ResponseObject.class)
 	@GetMapping
 	public ResponseEntity<ResponseObject> getAllFiles()
 	{
@@ -46,6 +52,7 @@ public class FilesController {
 	 * @param codedFileName the coded file name in the format <folderName>-<fileName>
 	 * @return the file content
 	 */
+	@ApiOperation(value = "Retrive the file content log for a given file.", response = ResponseObject.class)
 	@GetMapping("/{codedFileName}")
 	public ResponseEntity<ResponseObject> getFileContent(@PathVariable String codedFileName)
 	{

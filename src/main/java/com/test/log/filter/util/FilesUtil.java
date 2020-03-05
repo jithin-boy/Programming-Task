@@ -123,8 +123,7 @@ public class FilesUtil {
 		List<String> result = null;
 		LOGGER.info("Reading all files from the path "+pathToScan);
 		try (Stream<Path> walk = Files.walk(Paths.get(pathToScan))) {
-
-			result = walk.filter(Files::isRegularFile).map(x -> x.toString().split("logs\\\\")[1].replace("\\", "-"))
+			result = walk.filter(Files::isRegularFile).map(x -> x.toString().split("logs\\"+File.separator)[1].replace("\\", "-"))
 					.collect(Collectors.toList());
 
 		} catch (IOException e) {
